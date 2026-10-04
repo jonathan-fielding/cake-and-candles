@@ -11,6 +11,7 @@
   --caramel: #d98a2b;
   --chocolate: #6b3e26;
   --pistachio: #6f9a4f;
+  --flame: #e9a23b;
   --link: #b22f47;
 
   /* illustration colours */
@@ -42,6 +43,7 @@
     --caramel: #f0a95a;
     --chocolate: #c98a62;
     --pistachio: #9cc47a;
+    --flame: #f5c060;
     --link: #ff9aab;
 
     --sponge: #e7b977;
@@ -437,7 +439,7 @@ svg {
 }
 
 .card-grid {
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
 }
 
 /* ---------- Home ---------- */
@@ -932,6 +934,171 @@ svg {
   font-weight: 700;
 }
 
+/* ---------- Candles ---------- */
+.candles-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: center;
+}
+
+.candles-hero-art {
+  width: 260px;
+  filter: drop-shadow(0 12px 18px rgb(80 40 20 / 0.15));
+}
+
+.candle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 1.25rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.candle-card {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.1rem 1.25rem;
+}
+
+.candle-card h3 {
+  margin-bottom: 0.25rem;
+  font-size: 1.2rem;
+}
+
+.candle-card p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.candle-card-art {
+  flex: none;
+  width: 64px;
+}
+
+/* The birthday candles get bigger cards with the drawing on top. */
+.candle-grid-feature {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
+}
+
+.candle-grid-feature .candle-card {
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.5rem;
+}
+
+.candle-grid-feature .candle-card-art {
+  width: 96px;
+}
+
+.candle-grid-feature .candle-card h3 {
+  font-size: 1.35rem;
+}
+
+.candle-timeline h3 {
+  font-size: 1.3rem;
+}
+
+.candle-page-art {
+  width: 180px;
+}
+
+.candle-facts {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.candle-body {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.candle-tips {
+  height: auto;
+  border-top: 6px solid var(--accent);
+}
+
+.candle-tips ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.candle-tips li {
+  position: relative;
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  border-bottom: 1px dashed var(--border);
+}
+
+.candle-tips li:last-child {
+  border-bottom: 0;
+}
+
+.candle-tips li::before {
+  content: "";
+  position: absolute;
+  left: 0.2rem;
+  top: 0.95rem;
+  width: 0.55rem;
+  height: 0.8rem;
+  border-radius: 50% 50% 50% 50% / 65% 65% 35% 35%;
+  background: var(--flame);
+}
+
+.callout-title {
+  font-size: 1.15rem;
+}
+
+.candle-safety-link {
+  margin-top: 1rem;
+}
+
+.candle-siblings {
+  margin-top: 3rem;
+}
+
+.candle-siblings h2 {
+  font-size: 1.35rem;
+}
+
+.candle-flame {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: flicker 1.6s ease-in-out infinite alternate;
+}
+
+.candle-sparks {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: twinkle 0.9s ease-in-out infinite alternate;
+}
+
+@keyframes flicker {
+  50% {
+    transform: scale(0.94, 1.06) skewX(2deg);
+  }
+  100% {
+    transform: scale(1.03, 0.95) skewX(-2deg);
+  }
+}
+
+@keyframes twinkle {
+  to {
+    opacity: 0.55;
+    transform: scale(0.85) rotate(12deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .candle-flame,
+  .candle-sparks {
+    animation: none;
+  }
+}
+
 /* ---------- 404 ---------- */
 .notfound-art {
   width: 160px;
@@ -969,6 +1136,10 @@ svg {
   .recipe-facts {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .candle-body {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 560px) {
@@ -989,8 +1160,12 @@ svg {
     justify-content: center;
   }
 
+  .site-nav ul {
+    gap: 0;
+  }
+
   .site-nav a {
-    padding: 0.35rem 0.7rem;
+    padding: 0.35rem 0.5rem;
   }
 
   .recipe-header {
@@ -1000,6 +1175,24 @@ svg {
   .recipe-art {
     width: 140px;
     grid-row: 1;
+  }
+
+  .candles-header {
+    grid-template-columns: 1fr;
+  }
+
+  .candles-hero-art {
+    width: 180px;
+    grid-row: 1;
+  }
+
+  .candle-page-art {
+    width: 120px;
+    grid-row: 1;
+  }
+
+  .candle-facts {
+    grid-template-columns: 1fr;
   }
 
   .about {

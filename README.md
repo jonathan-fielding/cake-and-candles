@@ -32,10 +32,11 @@ npx serve /tmp/site    # then open http://localhost:3000/cake/
 
 ## Project layout
 
-- `app/`: the pages (`/`, `/types/`, `/types/[slug]/`, `/history/`, `/recipes/`, `/recipes/[slug]/`, `/tips/`), the shared layout and the styles
-- `components/`: the navigation and the inline SVG cake illustrations
+- `app/`: the pages (`/`, `/types/`, `/types/[slug]/`, `/history/`, `/recipes/`, `/recipes/[slug]/`, `/candles/`, `/candles/[slug]/`, `/tips/`), the shared layout and the styles
+- `components/`: the navigation and the inline SVG cake and candle illustrations
 - `lib/cakeTypes.ts`: the types of cake and their families. Add a type here and its page is generated automatically at build time.
 - `lib/recipes.ts`: recipe data. Add a recipe here and its page is generated automatically at build time.
+- `lib/candles.ts`: candle data, grouped into cake candles, household candles and waxes. Each entry gets its own page at `/candles/<slug>/`.
 - `.github/workflows/deploy.yml`: builds and deploys to GitHub Pages
 - `public/.nojekyll`: stops GitHub Pages from hiding the `_next/` folder
 
