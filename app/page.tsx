@@ -22,6 +22,12 @@ const sections = [
     accent: "var(--chocolate)",
   },
   {
+    href: "/candles/",
+    title: "Types of candles",
+    text: "Spirals, numbers, sparklers and trick candles, plus every other kind of candle and wax.",
+    accent: "var(--flame)",
+  },
+  {
     href: "/tips/",
     title: "Tips & mistakes",
     text: "Everything I've learned the hard way, so you don't have to.",

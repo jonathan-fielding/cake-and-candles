@@ -50,6 +50,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                 <li><Link href="/types/">Types of cake</Link></li>
                 <li><Link href="/history/">History</Link></li>
                 <li><Link href="/recipes/">Recipes</Link></li>
+                <li><Link href="/candles/">Candles</Link></li>
                 <li><Link href="/tips/">Tips &amp; mistakes</Link></li>
               </ul>
             </nav>
