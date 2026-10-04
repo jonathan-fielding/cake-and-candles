@@ -34,12 +34,23 @@ export function LayerCake({ className, accent = "var(--berry)" }: Props) {
   );
 }
 
-export function CakeSlice({ className, accent = "var(--berry)" }: Props) {
+export function CakeSlice({
+  className,
+  accent = "var(--berry)",
+  crumb = "var(--sponge)",
+}: Props & { crumb?: string }) {
   return (
     <svg className={className} viewBox="0 0 120 90" aria-hidden="true">
-      <path d="M10 46 100 22v50L10 80z" fill="var(--sponge)" />
+      <path d="M10 46 100 22v50L10 80z" fill={crumb} />
       <path d="M10 46 100 22 112 30 22 54z" fill="var(--cream)" />
-      <path d="M100 22l12 8v50l-12-8z" fill="var(--sponge-dark)" />
+      {crumb === "var(--sponge)" ? (
+        <path d="M100 22l12 8v50l-12-8z" fill="var(--sponge-dark)" />
+      ) : (
+        <>
+          <path d="M100 22l12 8v50l-12-8z" fill={crumb} />
+          <path d="M100 22l12 8v50l-12-8z" fill="#2a1013" opacity="0.2" />
+        </>
+      )}
       <path d="M10 60 100 40v7L10 67z" fill={accent} opacity="0.85" />
       <path d="M100 40l12 6v7l-12-6z" fill={accent} />
       <circle cx="62" cy="28" r="7" fill={accent} />
