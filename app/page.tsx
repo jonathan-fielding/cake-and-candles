@@ -1,69 +1,108 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Link from "next/link";
+import { CakeSlice, LayerCake, Whisk } from "@/components/CakeArt";
+import { recipes } from "@/lib/recipes";
+
+const sections = [
+  {
+    href: "/types/",
+    title: "Types of cake",
+    text: "Sponge, chiffon, genoise, pound, angel food and more: what makes each one tick.",
+    accent: "var(--berry)",
+  },
+  {
+    href: "/history/",
+    title: "A short history",
+    text: "From honey breads in ancient Egypt to the birthday cake with candles on top.",
+    accent: "var(--caramel)",
+  },
+  {
+    href: "/recipes/",
+    title: "My recipes",
+    text: `${recipes.length} cakes I bake again and again, written out properly at last.`,
+    accent: "var(--chocolate)",
+  },
+  {
+    href: "/tips/",
+    title: "Tips & mistakes",
+    text: "Everything I've learned the hard way, so you don't have to.",
+    accent: "var(--pistachio)",
+  },
+];
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>
-            To get started, edit the{" "}
-            <code className={styles.code}>page.tsx</code> file.
-          </h1>
+    <>
+      <section className="hero">
+        <div className="container hero-inner">
+          <div className="hero-copy">
+            <p className="eyebrow">Hello, and welcome</p>
+            <h1>I really, really love cake.</h1>
+            <p className="lead">
+              This is my little corner of the internet for everything cake:
+              the different kinds, where they came from, the recipes I keep
+              coming back to, and the mistakes I&apos;ve made so you don&apos;t
+              have to.
+            </p>
+            <div className="button-row">
+              <Link href="/recipes/" className="button">
+                Get baking
+              </Link>
+              <Link href="/types/" className="button button-ghost">
+                Meet the cakes
+              </Link>
+            </div>
+          </div>
+          <LayerCake className="hero-art" />
+        </div>
+      </section>
+
+      <section className="container section">
+        <h2 className="section-title">Where would you like to start?</h2>
+        <ul className="card-grid">
+          {sections.map((s) => (
+            <li key={s.href}>
+              <Link href={s.href} className="card card-link" style={{ "--accent": s.accent } as React.CSSProperties}>
+                <h3>{s.title}</h3>
+                <p>{s.text}</p>
+                <span className="card-cta" aria-hidden="true">
+                  Take a look →
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="container section about">
+        <Whisk className="about-icon" />
+        <div>
+          <h2>A bit about me</h2>
           <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
+            I&apos;m a home baker, not a professional. I started with fairy
+            cakes at my nan&apos;s kitchen table and never really stopped. These
+            days I bake most weekends, usually for friends, often for no reason
+            at all. I believe there&apos;s no occasion too small for cake, and
+            that a slightly sunken sponge still tastes wonderful.
           </p>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="container section">
+        <h2 className="section-title">Fresh out of the oven</h2>
+        <ul className="recipe-strip">
+          {recipes.slice(0, 3).map((r) => (
+            <li key={r.slug}>
+              <Link href={`/recipes/${r.slug}/`} className="mini-recipe">
+                <CakeSlice className="mini-art" accent={r.accent} />
+                <span>
+                  <strong>{r.title}</strong>
+                  <span className="muted">{r.summary}</span>
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </>
   );
 }
