@@ -445,7 +445,10 @@ svg {
   display: flex;
   gap: 1.5rem;
   align-items: flex-start;
-  max-width: 820px;
+}
+
+.about p {
+  max-width: 68ch;
 }
 
 .about-icon {
@@ -596,7 +599,7 @@ svg {
 
 .tip-card {
   position: relative;
-  padding-top: 2.75rem;
+  padding-top: 3.4rem;
 }
 
 .tip-number {
@@ -743,6 +746,7 @@ svg {
 }
 
 .ingredients {
+  height: auto;
   position: sticky;
   top: 5.5rem;
   border-top: 6px solid var(--accent);
